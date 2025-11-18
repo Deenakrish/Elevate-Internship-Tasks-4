@@ -54,3 +54,20 @@ Steps Performed:
 → I located the previously created rule named “Block Telnet Port 23”.
 → I right-clicked the rule and selected Delete.
 → I confirmed the deletion when prompted, which removed the rule and restored the firewall to its original configuration.
+
+7. Document the Commands or GUI Steps Used
+
+Steps Performed:
+→ I documented all the GUI steps followed within the Windows Defender Firewall with Advanced Security console, including navigating through Inbound Rules, creating a new rule, configuring the port, action, profile, and naming options.
+→ I also recorded the PowerShell command used to test the rule
+→ These details were compiled to provide a clear reference for the rule creation, testing, and removal process.
+
+8. Summary: How the Firewall Filters Traffic
+
+Summary:
+→ The firewall filtered traffic by evaluating incoming and outgoing network packets against predefined rules.
+→ For each packet, the firewall checked criteria such as protocol, port number, direction (inbound or outbound), and network profile.
+→ Based on the rules I configured, the firewall applied the defined action—either allowing or blocking the traffic.
+→ In the case of Port 23, the firewall inspected inbound packets targeting that port and applied the “Block the connection” rule, preventing Telnet traffic from reaching the system.
+→ This rule-based filtering ensured that only authorized and safe network connections were permitted.
+
