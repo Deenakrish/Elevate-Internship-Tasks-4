@@ -1,0 +1,56 @@
+1. Open Firewall Configuration Tool (Windows)
+
+Steps Performed:
+→ Windows Settings → Privacy & Security → Windows Security → Firewall & network protection → Advanced settings
+→ Opened Windows Defender Firewall with Advanced Security
+→ Viewed Inbound Rules and Outbound Rules
+
+2. List Current Firewall Rules
+
+Steps Performed:
+→ I exported the existing Inbound Rules and Outbound Rules from the Windows Defender Firewall.
+→ I downloaded both rule sets as CSV files.
+→ I added these CSV files to the repository as separate reference documents.
+→ I analyzed the inbound and outbound traffic rules to understand how the firewall filters and manages network traffic based on predefined policies.
+
+3. Add a Rule to Block Inbound Traffic on a Specific Port (e.g., Port 23 – Telnet)
+
+Steps Performed:
+→ I opened Windows Defender Firewall with Advanced Security.
+→ I navigated to Inbound Rules and selected New Rule and the wizard prompted me to configure several options.
+→ For Rule Type, I selected Port because I needed to control traffic on a specific network port.
+→ In Protocol and Ports, I chose TCP, since Telnet operates over the TCP protocol, and I selected Specific local ports and entered 23 to ensure the rule targeted only Telnet traffic.
+→ In the Action section, I selected Block the connection to prevent any inbound connections on Port 23.
+→ In the Profile section, I selected Domain, Private, and Public so the rule would apply across all network environments.
+→ Finally, in the Name and Description section, I named the rule “Block Telnet Port 23” and added a brief description stating that the rule blocks inbound Telnet traffic for security purposes.
+
+4. Test the Rule by Attempting to Connect to Port 23
+
+Steps Performed:
+→ I tested the firewall rule using PowerShell with the command:
+Test-NetConnection -ComputerName localhost -Port 23
+RESULT:
+WARNING: TCP connect to (::1 : 23) failed                                                                          
+WARNING: TCP connect to (127.0.0.1 : 23) failed                                                                         
+
+ComputerName           : localhost
+RemoteAddress          : ::1
+RemotePort             : 23
+InterfaceAlias         : Loopback Pseudo-Interface 1
+SourceAddress          : ::1
+PingSucceeded          : True
+PingReplyDetails (RTT) : 0 ms
+TcpTestSucceeded       : False
+
+Result explanation:
+The result showed warnings indicating that TCP connections to both the IPv6 (::1) and IPv4 (127.0.0.1) loopback addresses failed, meaning the system was unable to establish a connection on Port 23.
+→ The output also displayed TcpTestSucceeded : False, confirming that the firewall successfully blocked inbound traffic on Port 23 as intended.
+
+6. Remove the Test Block Rule to Restore the Original State
+
+Steps Performed:
+→ I opened Windows Defender Firewall with Advanced Security.
+→ I navigated to the Inbound Rules section.
+→ I located the previously created rule named “Block Telnet Port 23”.
+→ I right-clicked the rule and selected Delete.
+→ I confirmed the deletion when prompted, which removed the rule and restored the firewall to its original configuration.
