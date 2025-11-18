@@ -1,19 +1,29 @@
-1. Open Firewall Configuration Tool (Windows)
+                                                  Task 4-Firewall Configuration and Traffic Filtering Task
+SUMMARY:
+→ Accessed and reviewed the Windows Firewall configuration interface.
+→ Exported and analyzed existing inbound and outbound rules from the system.
+→ Created a custom firewall rule to block inbound traffic on Port 23 (Telnet).
+→ Tested the rule using PowerShell to verify that the port was successfully blocked.
+→ Removed the test rule to restore the firewall to its original configuration.
+→ Documented all steps, commands, and observations throughout the process.
+→ Gained an understanding of how firewall rules control network traffic based on predefined criteria.
+
+STEP 1: Open Firewall Configuration Tool (Windows):
 
 Steps Performed:
-→ Windows Settings → Privacy & Security → Windows Security → Firewall & network protection → Advanced settings
-→ Opened Windows Defender Firewall with Advanced Security
-→ Viewed Inbound Rules and Outbound Rules
+→ Windows Settings → Privacy & Security → Windows Security → Firewall & network protection → Advanced settings.
+→ Opened Windows Defender Firewall with Advanced Security.
+→ Viewed Inbound Rules and Outbound Rules.
 
-2. List Current Firewall Rules
+STEP 2: List Current Firewall Rules:
 
 Steps Performed:
 → I exported the existing Inbound Rules and Outbound Rules from the Windows Defender Firewall.
 → I downloaded both rule sets as CSV files.
-→ I added these CSV files to the repository as separate reference documents.
-→ I analyzed the inbound and outbound traffic rules to understand how the firewall filters and manages network traffic based on predefined policies.
+→I uploaded the exported CSV files to the repository and included them as separate reference documents for documentation purposes.
+→ I analyzed the inbound and outbound traffic rules to understand how the firewall filters and manages network traffic based on predefined rules.
 
-3. Add a Rule to Block Inbound Traffic on a Specific Port (e.g., Port 23 – Telnet)
+SYTEP 3: Add a Rule to Block Inbound Traffic on a Specific Port (Port 23 – Telnet):
 
 Steps Performed:
 → I opened Windows Defender Firewall with Advanced Security.
@@ -24,14 +34,15 @@ Steps Performed:
 → In the Profile section, I selected Domain, Private, and Public so the rule would apply across all network environments.
 → Finally, in the Name and Description section, I named the rule “Block Telnet Port 23” and added a brief description stating that the rule blocks inbound Telnet traffic for security purposes.
 
-4. Test the Rule by Attempting to Connect to Port 23
+STEP 4. Test the Rule by Attempting to Connect to Port 23:
 
 Steps Performed:
 → I tested the firewall rule using PowerShell with the command:
 Test-NetConnection -ComputerName localhost -Port 23
+
 RESULT:
-WARNING: TCP connect to (::1 : 23) failed                                                                          
-WARNING: TCP connect to (127.0.0.1 : 23) failed                                                                         
+WARNING: TCP connect to (::1 : 23) failed
+WARNING: TCP connect to (127.0.0.1 : 23) failed
 
 ComputerName           : localhost
 RemoteAddress          : ::1
@@ -46,7 +57,7 @@ Result explanation:
 The result showed warnings indicating that TCP connections to both the IPv6 (::1) and IPv4 (127.0.0.1) loopback addresses failed, meaning the system was unable to establish a connection on Port 23.
 → The output also displayed TcpTestSucceeded : False, confirming that the firewall successfully blocked inbound traffic on Port 23 as intended.
 
-6. Remove the Test Block Rule to Restore the Original State
+STEP 5. Remove the Test Block Rule to Restore the Original State:
 
 Steps Performed:
 → I opened Windows Defender Firewall with Advanced Security.
@@ -55,14 +66,14 @@ Steps Performed:
 → I right-clicked the rule and selected Delete.
 → I confirmed the deletion when prompted, which removed the rule and restored the firewall to its original configuration.
 
-7. Document the Commands or GUI Steps Used
+STEP 6. Document the Commands or GUI Steps Used:
 
 Steps Performed:
 → I documented all the GUI steps followed within the Windows Defender Firewall with Advanced Security console, including navigating through Inbound Rules, creating a new rule, configuring the port, action, profile, and naming options.
-→ I also recorded the PowerShell command used to test the rule
+→ I also recorded the PowerShell command used to test the rule.
 → These details were compiled to provide a clear reference for the rule creation, testing, and removal process.
 
-8. Summary: How the Firewall Filters Traffic
+How the Firewall Filters Traffic:
 
 Summary:
 → The firewall filtered traffic by evaluating incoming and outgoing network packets against predefined rules.
@@ -71,3 +82,11 @@ Summary:
 → In the case of Port 23, the firewall inspected inbound packets targeting that port and applied the “Block the connection” rule, preventing Telnet traffic from reaching the system.
 → This rule-based filtering ensured that only authorized and safe network connections were permitted.
 
+Conclusion:
+
+→ The task successfully demonstrated how to configure and test Windows Firewall rules.
+→ Firewall rules effectively filter traffic by examining packet attributes such as port, protocol, and direction.
+→ The custom rule created for Port 23 showed that specific ports can be isolated and blocked as needed.
+→ Testing confirmed that the firewall correctly enforced the block action on Telnet traffic.
+→ Removing the rule restored the system’s previous configuration without issues.
+→ Overall, this activity reinforced practical knowledge of firewall behavior, traffic filtering, and security policy implementation.
